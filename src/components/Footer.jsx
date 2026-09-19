@@ -126,7 +126,7 @@ export function Footer() {
                 href={business.contact.phoneHref}
                 style={{ display: "flex", alignItems: "center", gap: "var(--space-8)", color: "#cbd5e1" }}
               >
-                <Phone size={16} style={{ color: "#6ee7b7" }} />
+                <Phone size={16} style={{ color: "var(--color-primary-light)" }} />
                 <span>{business.contact.phoneDisplay}</span>
               </a>
 
@@ -144,7 +144,7 @@ export function Footer() {
                 href={business.contact.emailHref}
                 style={{ display: "flex", alignItems: "center", gap: "var(--space-8)", color: "#cbd5e1" }}
               >
-                <Mail size={16} style={{ color: "#6ee7b7" }} />
+                <Mail size={16} style={{ color: "var(--color-primary-light)" }} />
                 <span>{business.contact.email}</span>
               </a>
             </div>
@@ -166,12 +166,12 @@ export function Footer() {
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12, 12px)", fontSize: "0.95rem", color: "#94a3b8" }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: "var(--space-8)" }}>
-                <MapPin size={16} style={{ color: "#6ee7b7", marginTop: "4px", flexShrink: 0 }} />
+                <MapPin size={16} style={{ color: "var(--color-primary-light)", marginTop: "4px", flexShrink: 0 }} />
                 <span>{business.location.fullAddress}</span>
               </div>
 
               <div style={{ display: "flex", alignItems: "flex-start", gap: "var(--space-8)" }}>
-                <Clock size={16} style={{ color: "#6ee7b7", marginTop: "4px", flexShrink: 0 }} />
+                <Clock size={16} style={{ color: "var(--color-primary-light)", marginTop: "4px", flexShrink: 0 }} />
                 <span>{business.openingHours.summary}</span>
               </div>
             </div>

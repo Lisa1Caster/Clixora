@@ -48,7 +48,7 @@ export function ServiceCard({
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to top, rgba(15, 76, 58, 0.4) 0%, transparent 60%)",
+            background: "linear-gradient(to top, rgba(15, 23, 42, 0.45) 0%, transparent 60%)",
             pointerEvents: "none",
           }}
         />

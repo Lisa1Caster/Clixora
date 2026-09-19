@@ -38,7 +38,7 @@ export function Hero() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(135deg, rgba(8, 38, 30, 0.94) 0%, rgba(15, 76, 58, 0.88) 55%, rgba(17, 24, 39, 0.92) 100%)",
+            "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.90) 55%, rgba(15, 23, 42, 0.96) 100%)",
         }}
       />
 
@@ -57,9 +57,9 @@ export function Hero() {
                 fontWeight: 700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#6ee7b7", // Soft bright emerald for dark contrast
+                color: "#93c5fd", // Soft bright sky blue for contrast
                 backgroundColor: "rgba(255, 255, 255, 0.08)",
-                border: "1px solid rgba(110, 231, 183, 0.25)",
+                border: "1px solid rgba(147, 197, 253, 0.3)",
                 padding: "var(--space-8) var(--space-16)",
                 borderRadius: "9999px",
               }}
@@ -144,12 +144,12 @@ export function Hero() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "var(--space-8)" }}>
-              <ShieldCheck size={16} style={{ color: "#6ee7b7" }} />
+              <ShieldCheck size={16} style={{ color: "#93c5fd" }} />
               <span>{business.location.street}, {business.location.city}</span>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "var(--space-8)" }}>
-              <Clock size={16} style={{ color: "#6ee7b7" }} />
+              <Clock size={16} style={{ color: "#93c5fd" }} />
               <span>{business.openingHours.summary}</span>
             </div>
 
@@ -159,7 +159,7 @@ export function Hero() {
                   width: "8px",
                   height: "8px",
                   borderRadius: "50%",
-                  backgroundColor: "#10b981",
+                  backgroundColor: "#38bdf8",
                   display: "inline-block",
                 }}
               />

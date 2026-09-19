@@ -1,11 +1,66 @@
 import React, { useState, useEffect } from "react";
 import { business } from "../config/business";
 import { Button } from "./ui/Button";
-import { Menu, X, MessageSquare, Phone } from "lucide-react";
+import { Menu, X, MessageSquare, Phone, Palette, Check } from "lucide-react";
+
+export const THEME_PRESETS = [
+  {
+    id: "sapphire",
+    name: "Sapphire Blue",
+    primary: "#1e40af",
+    hover: "#1e3a8a",
+    light: "#3b82f6",
+    subtle: "#eff6ff",
+    accent: "#2563eb",
+    dot: "#2563eb",
+  },
+  {
+    id: "emerald",
+    name: "Executive Emerald",
+    primary: "#0f4c3a",
+    hover: "#083327",
+    light: "#16654e",
+    subtle: "#edf6f2",
+    accent: "#059669",
+    dot: "#059669",
+  },
+  {
+    id: "indigo",
+    name: "Midnight Indigo",
+    primary: "#3730a3",
+    hover: "#312e81",
+    light: "#6366f1",
+    subtle: "#eef2ff",
+    accent: "#4f46e5",
+    dot: "#4f46e5",
+  },
+  {
+    id: "burgundy",
+    name: "Royal Burgundy",
+    primary: "#881337",
+    hover: "#700f2b",
+    light: "#be123c",
+    subtle: "#fff1f2",
+    accent: "#e11d48",
+    dot: "#e11d48",
+  },
+  {
+    id: "cyan",
+    name: "Tech Ocean Slate",
+    primary: "#0e7490",
+    hover: "#155e75",
+    light: "#06b6d4",
+    subtle: "#ecfeff",
+    accent: "#0891b2",
+    dot: "#0891b2",
+  },
+];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState("sapphire");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +74,16 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const applyTheme = (theme) => {
+    setCurrentTheme(theme.id);
+    document.documentElement.style.setProperty("--color-primary", theme.primary);
+    document.documentElement.style.setProperty("--color-primary-hover", theme.hover);
+    document.documentElement.style.setProperty("--color-primary-light", theme.light);
+    document.documentElement.style.setProperty("--color-primary-subtle", theme.subtle);
+    document.documentElement.style.setProperty("--color-accent", theme.accent);
+    setPaletteOpen(false);
+  };
 
   const closeMenu = () => setMobileMenuOpen(false);
 
@@ -137,15 +202,118 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop Right CTA */}
+          {/* Desktop Right CTA + Theme Palette Switcher */}
           <div
             style={{
               display: "none",
               alignItems: "center",
-              gap: "var(--space-16)",
+              gap: "var(--space-12, 12px)",
             }}
             className="desktop-actions"
           >
+            {/* Color Palette Switcher Popover */}
+            <div style={{ position: "relative" }}>
+              <button
+                type="button"
+                onClick={() => setPaletteOpen(!paletteOpen)}
+                title="Change Brand Color Theme"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "6px 12px",
+                  borderRadius: "var(--radius-control)",
+                  border: "1px solid var(--color-border)",
+                  backgroundColor: "var(--color-surface)",
+                  color: "var(--color-ink)",
+                  fontSize: "0.85rem",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  fontFamily: "var(--font-heading)",
+                  transition: "all var(--transition-smooth)",
+                }}
+              >
+                <Palette size={15} style={{ color: "var(--color-primary)" }} />
+                <span>Color</span>
+              </button>
+
+              {paletteOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "calc(100% + 8px)",
+                    right: 0,
+                    width: "220px",
+                    backgroundColor: "var(--color-surface)",
+                    borderRadius: "var(--radius-card)",
+                    border: "1px solid var(--color-border)",
+                    boxShadow: "var(--shadow-hover)",
+                    padding: "8px",
+                    zIndex: 60,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "4px",
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: "4px 8px 6px",
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                      color: "var(--color-text-muted)",
+                      borderBottom: "1px solid var(--color-border-light)",
+                    }}
+                  >
+                    Select Brand Color
+                  </div>
+
+                  {THEME_PRESETS.map((preset) => (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      onClick={() => applyTheme(preset)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        padding: "8px 10px",
+                        borderRadius: "var(--radius-control)",
+                        border: "none",
+                        backgroundColor:
+                          currentTheme === preset.id
+                            ? "var(--color-primary-subtle)"
+                            : "transparent",
+                        color: "var(--color-ink)",
+                        cursor: "pointer",
+                        fontSize: "0.85rem",
+                        fontFamily: "var(--font-heading)",
+                        textAlign: "left",
+                        transition: "background-color var(--transition-smooth)",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <span
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            borderRadius: "50%",
+                            backgroundColor: preset.dot,
+                            display: "inline-block",
+                          }}
+                        />
+                        <span>{preset.name}</span>
+                      </div>
+                      {currentTheme === preset.id && (
+                        <Check size={14} style={{ color: "var(--color-primary)" }} />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <a
               href={business.contact.phoneHref}
               style={{
@@ -230,6 +398,70 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
+
+            {/* Mobile Color Theme Picker Row */}
+            <div
+              style={{
+                paddingTop: "var(--space-12, 12px)",
+                paddingBottom: "var(--space-12, 12px)",
+                borderBottom: "1px solid var(--color-border-light)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "0.8rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  color: "var(--color-text-muted)",
+                  marginBottom: "8px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
+                <Palette size={14} style={{ color: "var(--color-primary)" }} />
+                <span>Theme Color</span>
+              </div>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                {THEME_PRESETS.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => applyTheme(preset)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      padding: "6px 10px",
+                      borderRadius: "var(--radius-control)",
+                      border:
+                        currentTheme === preset.id
+                          ? "2px solid var(--color-primary)"
+                          : "1px solid var(--color-border)",
+                      backgroundColor:
+                        currentTheme === preset.id
+                          ? "var(--color-primary-subtle)"
+                          : "var(--color-surface)",
+                      cursor: "pointer",
+                      fontSize: "0.8rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: "10px",
+                        height: "10px",
+                        borderRadius: "50%",
+                        backgroundColor: preset.dot,
+                        display: "inline-block",
+                      }}
+                    />
+                    <span>{preset.name.split(" ")[0]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div
               style={{

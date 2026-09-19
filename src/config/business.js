@@ -82,20 +82,20 @@ export const business = {
   },
 
   colors: {
-    primary: "#0f4c3a",       // Deep corporate British racing emerald
-    primaryHover: "#083327",
-    primaryLight: "#16654e",
-    primarySubtle: "#edf6f2",
-    secondary: "#1e293b",     // Crisp slate neutral
-    accent: "#059669",        // Refined emerald accent
-    background: "#fbfcfb",    // Soft, crisp off-white
+    primary: "#1e40af",       // Modern corporate Royal Sapphire Blue
+    primaryHover: "#1e3a8a",  // Deep Navy
+    primaryLight: "#3b82f6",  // Vibrant Royal Accent
+    primarySubtle: "#eff6ff", // Crisp ice blue tint
+    secondary: "#0f172a",     // Deep slate obsidian
+    accent: "#2563eb",        // Refined royal blue accent
+    background: "#f8fafc",    // Clean crisp slate off-white
     surface: "#ffffff",
-    surfaceAlt: "#f4f7f5",    // Alternating section tint
-    textPrimary: "#111827",   // Near-black ink
-    textSecondary: "#4b5563",
-    textMuted: "#6b7280",
-    border: "#e5e7eb",
-    borderLight: "#edf1ee"
+    surfaceAlt: "#f1f5f9",    // Alternating section tint
+    textPrimary: "#0f172a",   // Near-black slate ink
+    textSecondary: "#334155",
+    textMuted: "#64748b",
+    border: "#e2e8f0",
+    borderLight: "#edf2f7"
   },
 
   images: {
